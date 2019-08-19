@@ -1,20 +1,19 @@
-import * as express from 'express';
-import { Request, Response } from 'express';
+import "dotenv/config";
+import * as express from "express";
+import { Request, Response } from "express";
+import config from "./config/config";
 
 const app = express();
-const { 
-  PORT = 3000
-} = process.env;
 
-app.get('/', (req: Request, res: Response) => {
+app.get("/", (req: Request, res: Response) => {
   res.send({
-    message: 'hello world!',
-  })
+    message: "hello world!"
+  });
 });
 
 if (require.main === module) {
-  app.listen(PORT, () => {
-    console.log('server started at http://localhost:'+PORT);
+  app.listen(config.server.port, () => {
+    console.log("server started at http://localhost:" + config.server.port);
   });
 }
 
