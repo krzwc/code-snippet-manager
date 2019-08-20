@@ -1,4 +1,5 @@
 import * as mongoose from "mongoose";
+import { SnippetModel } from "./types";
 
 const snippetSchema = new mongoose.Schema({
   code: {
@@ -15,6 +16,6 @@ const snippetSchema = new mongoose.Schema({
   }
 });
 
-const Snippet = mongoose.model("Snippet", snippetSchema);
+const Snippet = mongoose.model<SnippetModel>("Snippet", snippetSchema);
 
 export default Snippet;
