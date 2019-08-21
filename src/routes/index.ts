@@ -1,17 +1,14 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
+import technologyController from "../controllers/technologyController";
+import { catchAsyncDecorator } from "../middleware/errorHandlers";
 
 const routes = () => {
   const api: Router = Router();
   //GET all
+  api.get("/", catchAsyncDecorator(technologyController.findAll));
   //GET one
   //PUT
   //DELETE
-
-  api.get("/", (req: Request, res: Response) => {
-    res.send({
-      message: "hello world!"
-    });
-  });
 
   return api;
 };

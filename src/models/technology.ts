@@ -15,8 +15,6 @@ const technologySchema = new mongoose.Schema({
   }
 });
 
-// technologySchema.plugin(URLSlugs("name", { field: "slug", update: true }));
-
 technologySchema.pre("remove", function(next) {
   this.model("Snippet").deleteMany({ technology: this._id }, next);
 });
