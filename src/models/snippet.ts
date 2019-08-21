@@ -1,5 +1,8 @@
 import * as mongoose from "mongoose";
+import * as slug from "mongoose-slug-generator";
 import { SnippetModel } from "./types";
+
+mongoose.plugin(slug);
 
 const snippetSchema = new mongoose.Schema({
   code: {
@@ -13,6 +16,10 @@ const snippetSchema = new mongoose.Schema({
   technology: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Technology"
+  },
+  slug: {
+    type: String,
+    slug: "description"
   }
 });
 

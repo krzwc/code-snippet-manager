@@ -40,6 +40,8 @@ const createTechnologyWithSnippets = async () => {
 
   await tech1.save();
   await tech2.save();
+
+  // await tech2.remove();
 };
 // end checking db
 
