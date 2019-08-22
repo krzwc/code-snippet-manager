@@ -4,6 +4,8 @@ import { SnippetModel } from "./types";
 
 mongoose.plugin(slug);
 
+const technologyRef = mongoose.model("Technology").schema;
+
 const snippetSchema = new mongoose.Schema({
   code: {
     type: String,
@@ -19,7 +21,11 @@ const snippetSchema = new mongoose.Schema({
   },
   slug: {
     type: String,
-    slug: "description"
+    slug: [
+      // technologyRef.statics.findTechnologyNameById(this.technology),
+      "description"
+    ],
+    unique: true
   }
 });
 

@@ -11,9 +11,17 @@ const technologySchema = new mongoose.Schema({
   },
   slug: {
     type: String,
-    slug: "name"
+    slug: "name",
+    unique: true
   }
 });
+
+technologySchema.statics.findTechnologyNameById = async function(id) {
+  const technology = await mongoose.model("Technology").findOne({
+    _id: id
+  });
+  return technology;
+};
 
 technologySchema.pre("remove", function(next) {
   this.model("Snippet").deleteMany({ technology: this._id }, next);
