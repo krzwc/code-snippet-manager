@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import Technology from "../models/technology";
+import { create } from "domain";
 
 export default {
   async findAll(req: Request, res: Response) {
@@ -10,5 +11,15 @@ export default {
     const technology = await Technology.findOne({ slug: req.params.slug });
     if (!technology) return next();
     return res.status(200).send({ data: technology });
+  },
+  async create(req: Request, res: Response) {
+    //2do - validate prior to saving
+    const technology = await new Technology({
+      name: req.body.name
+    }).save();
+
+    return res
+      .status(201)
+      .send({ data: technology, message: "Technology created" });
   }
 };

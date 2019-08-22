@@ -9,6 +9,7 @@ const routes = () => {
   //GET one
   api.get("/:slug", catchAsyncDecorator(technologyController.findOne));
   //PUT
+  api.post("/", catchAsyncDecorator(technologyController.create));
   //DELETE
 
   return api;
