@@ -32,5 +32,12 @@ export default {
     return res
       .status(200)
       .send({ data: technology, message: "Technology was updated" });
+  },
+  async delete(req: Request, res: Response, next: NextFunction) {
+    const technology = await Technology.findOneAndDelete({
+      slug: req.params.slug
+    });
+    if (!technology) return next();
+    return res.status(200).send({ message: "Technology deleted" });
   }
 };

@@ -13,6 +13,7 @@ const routes = () => {
   //UPDATE
   api.put("/:slug", catchAsyncDecorator(technologyController.update));
   //DELETE
+  api.delete("/:slug", catchAsyncDecorator(technologyController.delete));
 
   return api;
 };
