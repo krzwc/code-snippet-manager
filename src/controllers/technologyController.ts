@@ -4,6 +4,7 @@ import { create } from "domain";
 
 export default {
   async findAll(req: Request, res: Response) {
+    //2do - paginate?
     const technologies = await Technology.find().sort({ createdAt: "desc" });
     return res.status(200).send({ data: technologies });
   },
@@ -23,6 +24,7 @@ export default {
       .send({ data: technology, message: "Technology created" });
   },
   async update(req: Request, res: Response, next: NextFunction) {
+    //2do - validate prior to saving
     const technology = await Technology.findOneAndUpdate(
       { slug: req.params.slug },
       { name: req.body.name },
