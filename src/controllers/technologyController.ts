@@ -21,5 +21,16 @@ export default {
     return res
       .status(201)
       .send({ data: technology, message: "Technology created" });
+  },
+  async update(req: Request, res: Response, next: NextFunction) {
+    const technology = await Technology.findOneAndUpdate(
+      { slug: req.params.slug },
+      { name: req.body.name },
+      { new: true }
+    );
+    if (!technology) return next();
+    return res
+      .status(200)
+      .send({ data: technology, message: "Technology was updated" });
   }
 };
