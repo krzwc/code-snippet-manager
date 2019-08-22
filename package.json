@@ -15,6 +15,7 @@
     "@types/jest": "^24.0.17",
     "@types/mongoose": "^5.5.12",
     "@types/node": "^12.7.1",
+    "@types/express": "^4.17.0",
     "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "supertest": "^4.0.2",
@@ -28,11 +29,11 @@
     "webpack-shell-plugin": "^0.5.0"
   },
   "dependencies": {
-    "@types/express": "^4.17.0",
     "cors": "^2.8.5",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "mongoose": "^5.6.9",
-    "mongoose-slug-generator": "^1.0.4"
+    "mongoose-slug-generator": "^1.0.4",
+    "pug": "^2.0.4"
   }
 }
