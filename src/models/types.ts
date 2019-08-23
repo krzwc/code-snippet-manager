@@ -8,6 +8,9 @@ export type TechnologyModel = mongoose.Document & {
 export type SnippetModel = mongoose.Document & {
   code: string;
   description: string;
-  technology: typeof mongoose.Schema.Types.ObjectId;
+  technology: Id;
+  techName: string;
   slug?: string;
 };
+
+export type Id = typeof mongoose.Schema.Types.ObjectId;

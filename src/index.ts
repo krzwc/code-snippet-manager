@@ -20,19 +20,22 @@ const createTechnologyWithSnippets = async () => {
   const snippet1 = new models.Snippet({
     code: "this is a snippet with event delegation",
     description: "event delegation",
-    technology: tech1.id
+    technology: tech1.id,
+    techName: tech1.name
   });
 
   const snippet2 = new models.Snippet({
     code: "copy line snippet",
     description: "copy line",
-    technology: tech2.id
+    technology: tech2.id,
+    techName: tech2.name
   });
 
   const snippet3 = new models.Snippet({
     code: "comment line snippet",
     description: "comment line",
-    technology: tech2.id
+    technology: tech2.id,
+    techName: tech2.name
   });
 
   await snippet1.save();
@@ -42,7 +45,12 @@ const createTechnologyWithSnippets = async () => {
   await tech1.save();
   await tech2.save();
 
-  // await tech2.remove();
+  // const fn = async () =>
+  //   await mongoose.model("Technology").findById(tech1.id, function(err, obj) {
+  //     console.log(obj.name);
+  //   });
+
+  // console.log(fn());
 };
 // end checking db
 

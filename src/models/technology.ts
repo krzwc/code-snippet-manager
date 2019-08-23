@@ -1,6 +1,6 @@
 import * as mongoose from "mongoose";
 import * as slug from "mongoose-slug-generator";
-import { TechnologyModel } from "./types";
+import { Id, TechnologyModel } from "./types";
 
 mongoose.plugin(slug);
 
@@ -16,11 +16,12 @@ const technologySchema = new mongoose.Schema({
   }
 });
 
-technologySchema.statics.findTechnologyNameById = async function(id) {
-  const technology = await mongoose.model("Technology").findOne({
-    _id: id
-  });
-  return technology;
+technologySchema.statics.findTechnologyNameById = function(id: Id) {
+  return mongoose
+    .model("Technology")
+    .findById(id, async (err, obj: TechnologyModel) => {
+      return await obj.name;
+    });
 };
 
 technologySchema.pre("remove", function(next) {

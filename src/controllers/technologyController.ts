@@ -6,6 +6,7 @@ export default {
   async findAll(req: Request, res: Response) {
     const technologies = await Technology.find().sort({ name: "desc" });
     const snippets = await Snippet.find();
+
     return res.status(200).send({ data: { technologies, snippets } });
   },
   async findOne(req: Request, res: Response, next: NextFunction) {
@@ -14,6 +15,7 @@ export default {
       technology: technology._id
     });
     if (!technology) return next();
+
     return res.status(200).send({ data: { technology, snippetsByTechnology } });
   },
   async create(req: Request, res: Response) {
@@ -34,6 +36,7 @@ export default {
       { new: true }
     );
     if (!technology) return next();
+
     return res
       .status(200)
       .send({ data: technology, message: "Technology was updated" });
@@ -43,6 +46,7 @@ export default {
       slug: req.params.slug
     });
     if (!technology) return next();
+
     return res.status(200).send({ message: "Technology deleted" });
   }
 };
