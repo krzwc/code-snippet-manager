@@ -21,6 +21,7 @@ const routes = () => {
     catchAsyncDecorator(snippetsController.findOneByTech)
   );
   api.post("/:slug", catchAsyncDecorator(snippetsController.create));
+  api.put("/:slug1/:slug2", catchAsyncDecorator(snippetsController.update));
 
   return api;
 };

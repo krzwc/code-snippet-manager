@@ -23,5 +23,23 @@ export default {
     }).save();
 
     return res.status(201).send({ data: snippet, message: "Snippet created" });
+  },
+  async update(req: Request, res: Response, next: NextFunction) {
+    //2do - validate prior to saving
+    const technology = await Technology.findOne({ slug: req.params.slug1 });
+    const snippet = await Snippet.findOneAndUpdate(
+      { slug: req.params.slug2 },
+      {
+        code: req.body.code,
+        description: req.body.description,
+        technology: req.body.technology ? req.body.technology : technology.id
+      },
+      { new: true }
+    );
+    if (!snippet) return next();
+
+    return res
+      .status(200)
+      .send({ data: snippet, message: "Snippet was updated" });
   }
 };
