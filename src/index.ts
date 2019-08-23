@@ -20,22 +20,19 @@ const createTechnologyWithSnippets = async () => {
   const snippet1 = new models.Snippet({
     code: "this is a snippet with event delegation",
     description: "event delegation",
-    technology: tech1.id,
-    techName: tech1.name
+    technology: tech1.id
   });
 
   const snippet2 = new models.Snippet({
     code: "copy line snippet",
     description: "copy line",
-    technology: tech2.id,
-    techName: tech2.name
+    technology: tech2.id
   });
 
   const snippet3 = new models.Snippet({
     code: "comment line snippet",
     description: "comment line",
-    technology: tech2.id,
-    techName: tech2.name
+    technology: tech2.id
   });
 
   await snippet1.save();

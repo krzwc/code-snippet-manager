@@ -1,5 +1,6 @@
 import { Router } from "express";
 import technologyController from "../controllers/technologyController";
+import snippetsController from "../controllers/snippetsController";
 import { catchAsyncDecorator } from "../middleware/errorHandlers";
 
 const routes = () => {
@@ -14,6 +15,11 @@ const routes = () => {
   api.put("/:slug", catchAsyncDecorator(technologyController.update));
   //DELETE
   api.delete("/:slug", catchAsyncDecorator(technologyController.delete));
+
+  api.get(
+    "/:slug1/:slug2",
+    catchAsyncDecorator(snippetsController.findOneByTech)
+  );
 
   return api;
 };

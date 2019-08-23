@@ -9,7 +9,6 @@ export type SnippetModel = mongoose.Document & {
   code: string;
   description: string;
   technology: Id;
-  techName: string;
   slug?: string;
 };
 
