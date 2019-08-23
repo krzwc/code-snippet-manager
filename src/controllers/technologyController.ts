@@ -1,17 +1,20 @@
 import { Request, Response, NextFunction } from "express";
 import Technology from "../models/technology";
-import { create } from "domain";
+import Snippet from "../models/snippet";
 
 export default {
   async findAll(req: Request, res: Response) {
-    //2do - paginate?
-    const technologies = await Technology.find().sort({ createdAt: "desc" });
-    return res.status(200).send({ data: technologies });
+    const technologies = await Technology.find().sort({ name: "desc" });
+    const snippets = await Snippet.find();
+    return res.status(200).send({ data: { technologies, snippets } });
   },
   async findOne(req: Request, res: Response, next: NextFunction) {
     const technology = await Technology.findOne({ slug: req.params.slug });
+    const snippetsByTechnology = await Snippet.find({
+      technology: technology._id
+    });
     if (!technology) return next();
-    return res.status(200).send({ data: technology });
+    return res.status(200).send({ data: { technology, snippetsByTechnology } });
   },
   async create(req: Request, res: Response) {
     //2do - validate prior to saving

@@ -6,7 +6,6 @@ import * as mongoose from "mongoose";
 import routes from "./routes";
 import models from "./models";
 import { handle404, catchErrors } from "./middleware/errorHandlers";
-import { join } from "path";
 
 //checking db
 const createTechnologyWithSnippets = async () => {
