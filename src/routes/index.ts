@@ -22,6 +22,7 @@ const routes = () => {
   );
   api.post("/:slug", catchAsyncDecorator(snippetsController.create));
   api.put("/:slug1/:slug2", catchAsyncDecorator(snippetsController.update));
+  api.delete("/:slug1/:slug2", catchAsyncDecorator(snippetsController.delete));
 
   return api;
 };

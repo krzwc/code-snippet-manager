@@ -41,5 +41,12 @@ export default {
     return res
       .status(200)
       .send({ data: snippet, message: "Snippet was updated" });
+  },
+  async delete(req: Request, res: Response, next: NextFunction) {
+    const snippet = await Snippet.findOneAndDelete({
+      slug: req.params.slug2
+    });
+    if (!snippet) return next();
+    return res.status(200).send({ message: "Snippet deleted" });
   }
 };
