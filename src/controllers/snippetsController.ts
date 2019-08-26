@@ -1,6 +1,7 @@
 import Technology from "../models/technology";
 import Snippet from "../models/snippet";
 import { Request, Response, NextFunction } from "express";
+import { check, validationResult } from "express-validator";
 
 export default {
   async findOneByTech(req: Request, res: Response, next: NextFunction) {
@@ -48,5 +49,18 @@ export default {
     });
     if (!snippet) return next();
     return res.status(200).send({ message: "Snippet deleted" });
+  },
+  validate: [
+    check("code").isLength({ min: 1 }),
+    check("description").isLength({ min: 1 })
+  ],
+  verifyValidation(req: Request, res: Response, next: NextFunction) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    //obiekt errors pusty
+    next();
   }
 };

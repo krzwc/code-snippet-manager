@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import Technology from "../models/technology";
 import Snippet from "../models/snippet";
+import { check, validationResult } from "express-validator";
 
 export default {
   async findAll(req: Request, res: Response) {
@@ -19,7 +20,10 @@ export default {
     return res.status(200).send({ data: { technology, snippetsByTechnology } });
   },
   async create(req: Request, res: Response) {
-    //2do - validate prior to saving
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
     const technology = await new Technology({
       name: req.body.name
     }).save();
@@ -48,5 +52,15 @@ export default {
     if (!technology) return next();
 
     return res.status(200).send({ message: "Technology deleted" });
+  },
+  validate: [check("name").isLength({ min: 1 })],
+  verifyValidation(req: Request, res: Response, next: NextFunction) {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    //obiekt errors pusty
+    next();
   }
 };
