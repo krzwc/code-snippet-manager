@@ -6,7 +6,7 @@ export type OneTech = {
   description: string;
   technology: string;
   slug: string;
-  __v: string;
+  __v: number;
 };
 
 export type Tech = Array<OneTech>;
