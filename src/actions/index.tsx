@@ -1,7 +1,7 @@
 import { Action, ActionCreator } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { AppState } from "../containers/App/types";
-import ENDPOINT from "../utils/endpoint";
+const ENDPOINT = process.env.REACT_APP_ENDPOINT;
 
 export const SELECT_TECH = "SELECT_TECH";
 
