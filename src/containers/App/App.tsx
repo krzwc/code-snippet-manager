@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 //   }
 // };
 
-const App = ({ selectedTech, items, dispatch }: AppProps) => {
+export const App = ({ selectedTech, items, dispatch }: AppProps) => {
   // const [state, setState] = useState(initialState);
 
   // const fetchAPI = async (tech: string) => {
