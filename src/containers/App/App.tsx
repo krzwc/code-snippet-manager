@@ -3,6 +3,7 @@ import PickTech from "../../components/PickTech";
 import { AppProps, AppState } from "./types";
 import { selectTech, fetchSnippetsIfNeeded } from "../../actions";
 import { connect } from "react-redux";
+import ShortcutPanel from "../../components/ShortcutPanel";
 
 // const initialState: AppState = {
 //   selectedTech: "javascript",
@@ -55,6 +56,7 @@ export const App = ({ selectedTech, items, dispatch }: AppProps) => {
             {item.description} - {item.code}
           </div>
         ))}
+      <ShortcutPanel shortcuts={[{ shortcut: "⌘J", description: "Toggle panel" }, { shortcut: "⇧⌘P", description: "Show all commands" }, { shortcut: "⌘P", description: "Show files" }]} />
     </div>
   );
 };
